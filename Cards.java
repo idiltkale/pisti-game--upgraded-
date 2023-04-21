@@ -1,7 +1,9 @@
 import java.util.ArrayList;
 import java.util.Collections;
+import java.util.Scanner;
 
 public class Cards {
+   Scanner scanner = new Scanner(System.in);
 
    private static String[] suits = { "♦", "♥", "♠", "♣" };
    private static String[] ranks = { "A", "2", "3", "4", "5", "6", "7", "8", "9", "10", "J", "Q", "K" };
@@ -10,6 +12,7 @@ public class Cards {
    private ArrayList<String> mycards = new ArrayList<>();
    private ArrayList<String> cmpcards = new ArrayList<>();
    private ArrayList<String> board = new ArrayList<>();
+   int howmanyplayers = scanner.nextInt();
 
    //public Cards(ArrayList<Integer> deckk,String[] suits, String[]ranks, ArrayList<String> deck, ArrayList<String> mycards, ArrayList<String>cmpcards){
    public Cards(){
@@ -58,24 +61,13 @@ public class Cards {
          System.out.println(deck.get(i));
       }*/
    }
-   public void PrintOurCards() {
-      System.out.println();
-      for (int i = 0; i < 4; i++) {
-         System.out.println("              your " + (i + 1) + ". " + "card: " + mycards.get(i));
-      }
-      for (int i = 0; i < 4; i++) {
-         System.out.println("              computer's " + (i + 1) + ". " + "card: " + cmpcards.get(i));
-
-      }
-      System.out.println();
-
-      for (int i = 51; i >= 0; i--) {
-         System.out.println("                      "+ board.get(i));
-      }
-      System.out.println("        ♡ ♡ ♡ ♡ ♡ ♡ ♡ ♡ ♡ ♡ ♡ ♡ ♡ ♡ ♡ ♡");
-   }
    public void Printer(){
       for(int i=0; i<deck.size();i++){
+         System.out.println(deck.get(i));
+      }
+   }
+   public void PrintDeck(){
+      for (int i = 0; i < deck.size(); i++) {
          System.out.println(deck.get(i));
       }
    }

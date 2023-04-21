@@ -1,33 +1,58 @@
+import java.util.ArrayList;
+
 public class Dealer {
     private Cards cards;
-    public Dealer(){
+
+    boolean didDealBoard = true;
+    private ArrayList<Players> players;
+    public static int k = 0;
+
+    public Dealer(Cards cards,ArrayList<Players> players) {
         this.cards = cards;
-
+        this.players = players;
     }
-    public Cards getCards(){return cards;}
-    public void setCards(Cards cards){this.cards=cards;}
 
-    public void dealCards(){
-        Cards cards = new Cards();
-       /* cards.Define();
-        cards.Shuffle();
-        cards.Display();
-        cards.Printer();*/
-        for(int i=0;i<4;i++){
-            cards.getMycards().add(cards.getDeck().get(0));
-            cards.getDeck().remove(0);
-            cards.getCmpcards().add(cards.getDeck().get(0));
-            cards.getDeck().remove(0);
+    public Cards getCards() {return cards;}
+
+    public void setCards(Cards cards) {this.cards = cards;}
+
+    public void dealCards() {
+        if (didDealBoard) {
+            for (int i = 0; i < 4; i++) {
+                cards.getBoard().add( cards.getDeck().remove(0));
+            }
+            didDealBoard = false;
         }
-        for(int i=0;i<4;i++){
-            System.out.println("my cards: " + cards.getMycards().get(i));
-           /* cards.getCmpcards().add(cards.getDeck().get(i));
-            cards.getDeck().remove(i);
-            System.out.println("cmpcards: " + cards.getCmpcards().get(i));*/
+        int numCardsPerPlayer = getCards().getDeck().size() / cards.howmanyplayers;
+
+
+            for (int k = 0; k <= numCardsPerPlayer; k++) {
+                for (Players player : players) {
+                    for (int j = 0; j < 4; j++) {
+                      //  player.getCards().getMycards().add(cards.getDeck().remove(0));
+                        player.getCards().add(cards.getDeck().remove(0));
+
+                    }
+
+                }
+                k += 4;
+                break;
+            }
+    }
+    public void PrintOurcards(){
+        int i=1;
+        for(Players s: players){
+            for(int k=0;k<s.getCards().size();k++){
+                System.out.println( i+". players cards: " + s.getCards().get(k));
+            }
+            System.out.println();
+            i++;
         }
-        for(int i=0;i<4;i++){
-            System.out.println("cmp cards: " + cards.getCmpcards().get(i));
+        System.out.println();
+        for (int j = cards.getBoard().size()-1; j >= 0; j--) {
+            System.out.println("                      "+ cards.getBoard().get(j));
+            //break;
+
         }
-        cards.Printer();
     }
 }
