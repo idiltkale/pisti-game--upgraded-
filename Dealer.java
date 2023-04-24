@@ -11,9 +11,7 @@ public class Dealer {
         this.cards = cards;
         this.players = players;
     }
-
     public Cards getCards() {return cards;}
-
     public void setCards(Cards cards) {this.cards = cards;}
 
     public void dealCards() {

@@ -1,4 +1,4 @@
-public class RegularBot extends Players implements Play {
+/*public class RegularBot extends Players implements Play {
     public RegularBot() {
         super(null, "Regular Bot 🤖");
     }
@@ -7,4 +7,4 @@ public class RegularBot extends Players implements Play {
     public void play(int choose) {
 
     }
-}
+}*/

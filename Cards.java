@@ -9,8 +9,6 @@ public class Cards {
    private static String[] ranks = { "A", "2", "3", "4", "5", "6", "7", "8", "9", "10", "J", "Q", "K" };
    private ArrayList<Integer> deckk = new ArrayList<Integer>();
    private ArrayList<String> deck = new ArrayList<>();
-   private ArrayList<String> mycards = new ArrayList<>();
-   private ArrayList<String> cmpcards = new ArrayList<>();
    private ArrayList<String> board = new ArrayList<>();
    int howmanyplayers = scanner.nextInt();
 
@@ -20,8 +18,6 @@ public class Cards {
       this.deckk=deckk;
       this.ranks = ranks;
       this.deck = deck;
-      this.mycards=mycards;
-      this.cmpcards=cmpcards;
    }
 
    public ArrayList<String> getBoard() {return board;}
@@ -29,13 +25,9 @@ public class Cards {
    public String[] getSuits(){return suits;}
    public String[] getRanks(){return ranks;}
    public ArrayList<String> getDeck(){return deck;}
-   public ArrayList<String> getMycards(){return mycards;}
-   public ArrayList<String> getCmpcards(){return cmpcards;}
    public void setSuits(String[] suits){this.suits=suits;}
    public void setDeck(ArrayList<String> deck){this.deck=deck;}
    public static void setRanks(String[] ranks) {Cards.ranks = ranks;}
-   public void setMycards(ArrayList<String> mycards) {this.mycards = mycards;}
-   public void setCmpcards(ArrayList<String> cmpcards) {this.cmpcards = cmpcards;}
    public ArrayList<Integer> getDeckk() {return deckk;}
    public void setDeckk(ArrayList<Integer> deckk) {this.deckk = deckk;}
    public void Define(){
