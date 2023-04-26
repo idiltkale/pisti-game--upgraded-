@@ -1,6 +1,6 @@
 /*public class RegularBot extends Players implements Play {
     public RegularBot() {
-        super(null, "Regular Bot 🤖");
+        super("Regular Bot 🤖");
     }
 
     @Override

@@ -1,62 +1,74 @@
-import java.util.ArrayList;
 import java.util.Random;
 
 public class ExpertBot extends Players {
-    public ExpertBot(Cards cd, ArrayList<String> cards, String name) {
-        super(cd, cards, name);
+    private String onBoard;
+    public static boolean exbool = true;
+    public ExpertBot() {
+        super("Expert Bot");
     }
 
-    public void PlayExpertBot(int index,String cardNum) {
+    @Override public String getOnBoard() {return onBoard;}
+    @Override public void setOnBoard(String onBoard) {this.onBoard = onBoard;}
+
+    public void PlayExpertBot() {
+        NoviceBot nb = new NoviceBot();
         Random rd = new Random();
-        for(int i=0; i< getCards().size();i++) {
-            String s = Counter.CheckCounts(getCards().get(i));
-            if (s != null){
-                cardNum = s;
+        boolean bool = true;
+
+        int size = Board.size();
+        if(size!=0) onBoard= Board.get(size-1);
+        else onBoard=null;
+
+        if(Dealer.forEx==true){
+            for(int i=0;i<getCards().size();i++){
+                Counter.CountForComp(getCards().get(i));
             }
-            else {
-                cardNum = null;
-            }
+            Dealer.forEx=false;
         }
-        if(cardNum==null) {
-            String[] cmprandom = { getCards().get(0), getCards().get(1), getCards().get(2), getCards().get(3)};
-            index = rd.nextInt(cmprandom.length);
-            cardNum = cmprandom[index];
-            while ((cardNum == null) || (cardNum.charAt(1) == 'J')) {
-                index = rd.nextInt(cmprandom.length);
-                cardNum = cmprandom[index];
-            }
-        }
-        Counter.PlayThisCard=null;
-        play(cardNum);
-    }
-    @Override
-    public void WhenIwin(String cardNum) {
-      /* super.WhenIwin(cardNum);
-        System.out.println("            computer took all the cards");
-        for (int k = (board.length - 1); k >= 0; k--) {
-            if (board[k] != null) {
-                board[k + 1] = cardNum;
-                break;
-            }
-        }
-        for(int y=0;y<cmpWins.length;y++) {
-            if(cmpWins[y]==null&&board[i]!=null) {
-                cmpWins[y]=board[i];
-                if(i!=52) {
-                    board[i]=null;
-                    i++;
-                }
-                else{
-                    i++;
+        int random = rd.nextInt(getCards().size())+1;
+        String cardNum = null;
+        if(onBoard!=null){
+            for (int i = 0; i < getCards().size(); i++) {
+                if(getOnBoard().charAt(2)==getCards().get(i).charAt(2)){
+                    cardNum= getCards().get(i);
+                    bool= false;
+                    play(cardNum);
                     break;
                 }
+            }if(bool==true){
+                for(int k=0; k< getCards().size();k++) {
+                    String s = Counter.CheckCounts(getCards());
+                    if (s != null){
+                        cardNum = s;
+                        play(cardNum);
+                        break;
+                    }
+                    else {
+                        cardNum = null;
+                    }
+                }
+                Counter.play=null;
+                if(cardNum==null) {
+                    cardNum = getCards().get(random - 1);
+                    play(cardNum);
+                }
             }
-            else i=0;
-        }*/
+        }
+        else {
+            cardNum = getCards().get(random - 1);
+            play(cardNum);
+        }
     }
+    @Override
+    public void WhenWin(String cardNum) {
+      super.WhenWin(cardNum);
+        System.out.println("            computer took all the cards");
 
+    }
     @Override
     public void play(String cardNum) {
+        exbool =false;
         super.play(cardNum);
+        exbool = true;
     }
 }

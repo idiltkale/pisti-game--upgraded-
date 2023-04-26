@@ -1,50 +1,50 @@
-import java.util.ArrayList;
 import java.util.Random;
 
-public class NoviceBot extends Players{
+public class NoviceBot extends Players {
     private String onBoard;
-    // private ArrayList<String> cards = new ArrayList<>();
-    private boolean bool2 = true;
-    private ArrayList<String> myWins = new ArrayList<>();
     int i = 0;
 
-    public NoviceBot(Cards cd, ArrayList<String> cards, String name) {
-        super(cd, cards, name);
+    public NoviceBot() {
+        super("Novice Bot 🤖");
     }
-    public boolean isBool2() {return bool2;}
-    public void setBool2(boolean bool2) {this.bool2 = bool2;}
-    public ArrayList<String> getMyWins() {return myWins;}
-    public void setMyWins(ArrayList<String> myWins) {this.myWins = myWins;}
-    public String getOnBoard() {return onBoard;}
-    public void setOnBoard(String onBoard) {this.onBoard = onBoard;}
-    public void PlayNoviceBot(){
+
+    @Override
+    public String getOnBoard() {
+        return onBoard;
+    }
+
+    @Override
+    public void setOnBoard(String onBoard) {
+        this.onBoard = onBoard;
+    }
+
+    public void PlayNoviceBot() {
         Random rd = new Random();
+        int size = Board.size();
+        if (size != 0) onBoard = Board.get(size - 1);
+        else onBoard = null;
 
-        int size = getCd().getBoard().size();
-        System.out.println(size);
-       if(size!=0) onBoard= getCd().getBoard().get(size-1);
-
-        int random = rd.nextInt(3)+1;
+        int random = rd.nextInt(getCards().size()) + 1;
         String cardNum = null;
-        if(onBoard!=null){
+        if (onBoard != null) {
             for (int i = 0; i < getCards().size(); i++) {
-                if(getOnBoard().charAt(1)==getCards().get(i).charAt(1)){
-                    cardNum= getCards().get(i);
+                if (getOnBoard().charAt(1) == getCards().get(i).charAt(1)) {
+                    cardNum = getCards().get(i);
                     break;
-                }
-                else if (random == i+1) {
+                } else if (random == i + 1) {
                     cardNum = getCards().get(i);
                 }
             }
+        } else {
+            cardNum = getCards().get(random - 1);
         }
-        else if (random == i) {
-            cardNum = getCards().get(i - 1);
-        }
+        System.out.println("SEÇTİĞİ KART    " + cardNum);
         play(cardNum);
     }
+
     @Override
-    public void WhenIwin(String cardNum) {
-        super.WhenIwin(cardNum);
+    public void WhenWin(String cardNum) {
+        super.WhenWin(cardNum);
     }
 
     @Override

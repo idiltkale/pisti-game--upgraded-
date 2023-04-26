@@ -1,55 +1,101 @@
+import java.util.ArrayList;
+
 public class Counter {
-    public static int onec ;
-    public static int twoc ;
-    public static int threec;
-    public static int fourc ;
-    public static int fivec;
-    public static int sixc ;
-    public static int sevenc ;
-    public static int eightc ;
-    public static int ninec ;
-    public static int tenc ;
-    public static int kingc ;
-    public static int queenc ;
-    public static int jokerc ;
-    public static String PlayThisCard;
+    //private ArrayList<Integer> counter = new ArrayList<>();
+    private static int[] counter = new int[13];
+    public static String play = null;
 
-
-
-    //integer arrayi içine al 1 0 olsun 2 1 olsun etc
-
-    public static void CountForComp(String value){
-        if     (value.charAt(1)=='A') onec+=1;
-        else if(value.charAt(1)=='2') twoc+=1;
-        else if(value.charAt(1)=='3') threec+=1;
-        else if(value.charAt(1)=='4') fourc+=1;
-        else if(value.charAt(1)=='5') fivec+=1;
-        else if(value.charAt(1)=='6') sixc+=1;
-        else if(value.charAt(1)=='7') sevenc+=1;
-        else if(value.charAt(1)=='8') eightc+=1;
-        else if(value.charAt(1)=='9') ninec+=1;
-        else if(value.charAt(1)=='1') tenc+=1;
-        else if(value.charAt(1)=='K') kingc+=1;
-        else if(value.charAt(1)=='Q') queenc+=1;
-        else if(value.charAt(1)=='J') jokerc+=1;
+    public static int[] getCounter() {
+        return counter;
     }
-    public static String CheckCounts(String cmpcards) {
-        if(cmpcards!=null) {
-            if     (cmpcards.charAt(1)=='A' && onec==4) PlayThisCard = cmpcards;
-            else if(cmpcards.charAt(1)=='2' && twoc==4) PlayThisCard = cmpcards;
-            else if(cmpcards.charAt(1)=='3' && threec==4) PlayThisCard = cmpcards;
-            else if(cmpcards.charAt(1)=='4' && fourc==4) PlayThisCard = cmpcards;
-            else if(cmpcards.charAt(1)=='5' && fivec==4) PlayThisCard = cmpcards;
-            else if(cmpcards.charAt(1)=='6' && sixc==4) PlayThisCard = cmpcards;
-            else if(cmpcards.charAt(1)=='7' && sevenc==4) PlayThisCard = cmpcards;
-            else if(cmpcards.charAt(1)=='8' && eightc==4) PlayThisCard = cmpcards;
-            else if(cmpcards.charAt(1)=='9' && ninec==4) PlayThisCard = cmpcards;
-            else if(cmpcards.charAt(1)=='1' && tenc==4) PlayThisCard = cmpcards;
-            else if(cmpcards.charAt(1)=='K' && kingc==4) PlayThisCard = cmpcards;
-            else if(cmpcards.charAt(1)=='Q' && queenc==4) PlayThisCard = cmpcards;
-            else if(cmpcards.charAt(1)=='J' && jokerc==4) PlayThisCard = cmpcards;
+
+    public void setCounter(int[] counter) {
+        this.counter = counter;
+    }
+    //integer arrayi içine al 1 0 olsun 2 1 olsun etc
+    public static void CountForComp(String value){
+        char a = value.charAt(2);
+        for(int i=2;i<10;i++){
+            if(a == 'A') {
+                getCounter()[0]++;
+                break;
+            }
+            else if(a == '1'){
+                getCounter()[9]++;
+                break;
+            }
+            else if(a == 'J'){
+                getCounter()[10]++;
+                break;
+            }
+            else if(a == 'Q'){
+                getCounter()[11]++;
+                break;
+            }
+            else if(a == 'K'){
+                getCounter()[12]++;
+                break;
+            }
+            else if(Integer.parseInt(String.valueOf(a)) == i)  {
+                getCounter()[i-1]++;
+                break;
+            }
         }
-        return PlayThisCard;
+    }
+    public static String CheckCounts(ArrayList<String> cards) {
+        int max =0;
+        for(int j=0;j<cards.size();j++){
+            for(int i=2;i<10;i++){
+                char a = cards.get(j).charAt(2);
+                if(a=='A' && getCounter()[0]>max){
+                    System.out.println("1 oldu");
+                    max = getCounter()[0];
+                    play =cards.get(j);
+                }
+                if (a== '1' && getCounter()[9]>max) {
+                    System.out.println("13 oldu");
+                    max = getCounter()[9];
+                    play =cards.get(j);
+                }
+                if (a== 'J' && getCounter()[10]>max) {
+                    System.out.println("14 oldu");
+                    max = getCounter()[10];
+                    play =cards.get(j);
+                }
+                if (a== 'Q' && getCounter()[11]>max) {
+                    System.out.println("15 oldu");
+                    max = getCounter()[11];
+                    play =cards.get(j);
+                }
+                if (a== 'K' && getCounter()[12]>max) {
+                    System.out.println("16 oldu");
+                    max = getCounter()[12];
+                    play =cards.get(j);
+                }
+                 /*else if (Integer.parseInt(String.valueOf(a))== i && getCounter()[i]>max) { //DÜZELT YUKARIDAKİ GİBİ ELSE OLAMAZ İDİLLLL
+                    System.out.println("12 oldu");
+                    max = getCounter()[i];
+                    play =cards.get(j);
+                }*/
+            }
+        }
+        System.out.println("MAX OLAN KARTTTTT" + play +" Sayısı daaa: " + max);
+        return play;
+    }
+    public static void printcounter(){
+        System.out.println("A--" + getCounter()[0]);
+        System.out.println("2--" + getCounter()[1]);
+        System.out.println("3--" + getCounter()[2]);
+        System.out.println("4--" + getCounter()[3]);
+        System.out.println("5--" + getCounter()[4]);
+        System.out.println("6--" + getCounter()[5]);
+        System.out.println("7--" + getCounter()[6]);
+        System.out.println("8--" + getCounter()[7]);
+        System.out.println("9--" + getCounter()[8]);
+        System.out.println("10--" + getCounter()[9]);
+        System.out.println("J--" + getCounter()[10]);
+        System.out.println("Q--" + getCounter()[11]);
+        System.out.println("K--" + getCounter()[12]);
     }
 }
 
