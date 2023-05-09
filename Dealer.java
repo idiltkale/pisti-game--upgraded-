@@ -23,7 +23,7 @@ public class Dealer {
     public void dealCards() {
         if (didDealBoard) {
             for (int i = 0; i < 4; i++) {
-                Players.Board.add(cards.getDeck().remove(0));
+                Players.Board.add(Cards.getDeck().remove(0));
             }
             didDealBoard = false;
         }
@@ -45,7 +45,7 @@ public class Dealer {
     public void PrintOurcards() {
         int i = 1;
         for (Players player : players) {
-            System.out.println(i + ". Player " + player.getName() + "🎮🎮");
+            System.out.println(i + ". Player 🎮🎮");
             for (int k = 0; k < player.getCards().size(); k++) {
                 System.out.println(k + 1 + ". Cards" + player.getCards().get(k));
             }

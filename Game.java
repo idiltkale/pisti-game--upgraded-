@@ -2,17 +2,29 @@ import java.util.ArrayList;
 import java.util.Scanner;
 
 public class Game {
-    public void Start(){
+    public String txt;
+    public String name1;
+    public String diff1;
+    public String name2;
+    public String diff2;
+    public String name3;
+    public String diff3;
+    public String name4;
+    public String diff4;
+    public boolean bool;
+
+    public Game(ArrayList<Players> players, ArrayList<ExpertBot> exs,ArrayList<NoviceBot> nbs,mePlay mp) {
+
+
+    }
+
+    public void Start(ArrayList<Players> players, ArrayList<ExpertBot> exs,ArrayList<NoviceBot> nbs,mePlay mp){
+
+
+
         Scanner sc = new Scanner(System.in);
         Cards cards = new Cards();
-        ArrayList<Players> players = new ArrayList<>();
-        mePlay mp = new mePlay("burakfitness");
-        NoviceBot nb = new NoviceBot();
-        ExpertBot ex = new ExpertBot();
-        mePlay mp2 = new mePlay("lala");
 
-        players.add(mp);
-        players.add(ex);
         Dealer dl = new Dealer(cards,players);
         cards.Printer();
         System.out.println("************");
@@ -26,7 +38,7 @@ public class Game {
         dl.PrintOurcards();
         //cards.Printer();
 
-        for (int i = 0; i < 6; i++) {
+        while(Cards.getDeck()!=null) {
             for (int a = 0; a < 4; a++) {
                 while (true) {
                     System.out.print("The card you choose👉 :");
@@ -48,22 +60,19 @@ public class Game {
                     }
 
                 }
-
                 mp.PlayForMe(choose);
                 dl.PrintOurcards();
                 Counter.printcounter();
-                ex.PlayExpertBot();
+                exs.get(0).PlayExpertBot();
                 dl.PrintOurcards();
 
             }
-            if (i != 5) {
-                System.out.println("                Cards are dealing🎲...");
-                System.out.println("                        ♡");
-                dl.dealCards();
-                dl.PrintOurcards();
-            } else System.out.println("                 The game is over🔚❌");
+            System.out.println("                Cards are dealing🎲...");
+            System.out.println("                        ♡");
+            dl.dealCards();
+            dl.PrintOurcards();
         }
-
+        System.out.println("                 The game is over🔚❌");
     }
     }
 

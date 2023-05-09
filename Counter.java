@@ -19,24 +19,19 @@ public class Counter {
             if(a == 'A') {
                 getCounter()[0]++;
                 break;
-            }
-            else if(a == '1'){
+            } else if(a == '1'){
                 getCounter()[9]++;
                 break;
-            }
-            else if(a == 'J'){
+            } else if(a == 'J'){
                 getCounter()[10]++;
                 break;
-            }
-            else if(a == 'Q'){
+            } else if(a == 'Q'){
                 getCounter()[11]++;
                 break;
-            }
-            else if(a == 'K'){
+            } else if(a == 'K'){
                 getCounter()[12]++;
                 break;
-            }
-            else if(Integer.parseInt(String.valueOf(a)) == i)  {
+            } else if(Integer.parseInt(String.valueOf(a)) == i)  {
                 getCounter()[i-1]++;
                 break;
             }
@@ -48,35 +43,31 @@ public class Counter {
             for(int i=2;i<10;i++){
                 char a = cards.get(j).charAt(2);
                 if(a=='A' && getCounter()[0]>max){
-                    System.out.println("1 oldu");
                     max = getCounter()[0];
                     play =cards.get(j);
                 }
                 if (a== '1' && getCounter()[9]>max) {
-                    System.out.println("13 oldu");
                     max = getCounter()[9];
                     play =cards.get(j);
                 }
                 if (a== 'J' && getCounter()[10]>max) {
-                    System.out.println("14 oldu");
                     max = getCounter()[10];
                     play =cards.get(j);
                 }
                 if (a== 'Q' && getCounter()[11]>max) {
-                    System.out.println("15 oldu");
                     max = getCounter()[11];
                     play =cards.get(j);
                 }
                 if (a== 'K' && getCounter()[12]>max) {
-                    System.out.println("16 oldu");
                     max = getCounter()[12];
-                    play =cards.get(j);
+                    play = cards.get(j);
                 }
-                 /*else if (Integer.parseInt(String.valueOf(a))== i && getCounter()[i]>max) { //DÜZELT YUKARIDAKİ GİBİ ELSE OLAMAZ İDİLLLL
-                    System.out.println("12 oldu");
-                    max = getCounter()[i];
-                    play =cards.get(j);
-                }*/
+                if(!Character.isLetter(a)){
+                    if (Integer.parseInt(String.valueOf(a))== i && getCounter()[i]>max) {
+                        max = getCounter()[i-1];
+                        play =cards.get(j);
+                    }
+                }
             }
         }
         System.out.println("MAX OLAN KARTTTTT" + play +" Sayısı daaa: " + max);

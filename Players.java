@@ -3,7 +3,6 @@ import java.util.ArrayList;
 public class Players {
     private ArrayList<String> cards;
     private ArrayList<String> inventory;
-    private String name;
     public static ArrayList<String> Board;
     private String onBoard;
     private static boolean bool2 = true;
@@ -77,8 +76,7 @@ public class Players {
         }
     }
 
-    public Players(String name) {
-        this.name = name;
+    public Players() {
         this.cards = new ArrayList<>();
         this.inventory = new ArrayList<>();
     }
@@ -88,11 +86,5 @@ public class Players {
     }
     public void setCards(ArrayList<String> cards) {
         this.cards = cards;
-    }
-    public String getName() {
-        return name;
-    }
-    public void setName(String name) {
-        this.name = name;
     }
 }

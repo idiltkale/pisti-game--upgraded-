@@ -6,7 +6,7 @@ public class Cards {
     Scanner scanner = new Scanner(System.in);
     private static final String[] suits = {"♦️", "♥️", "♠️", "♣️"};
     private static final String[] ranks = {"A", "2", "3", "4", "5", "6", "7", "8", "9", "10", "J", "Q", "K"};
-    private ArrayList<String> deck = new ArrayList<>();
+    private static ArrayList<String> deck = new ArrayList<>();
 
     {
         System.out.println("How many players will be play🎮");
@@ -28,12 +28,13 @@ public class Cards {
         return ranks;
     }
 
-    public ArrayList<String> getDeck() {
-        return deck;
-    }
 
     public void setDeck(ArrayList<String> deck) {
         this.deck = deck;
+    }
+
+    public static ArrayList<String> getDeck() {
+        return deck;
     }
 
     public void shuffleCards() {

@@ -4,7 +4,7 @@ public class mePlay extends Players {
     int i = 0;
 
     public mePlay(String name) {
-        super(name);
+        super();
     }
 
     public boolean isBool2() {

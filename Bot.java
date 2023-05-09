@@ -4,7 +4,7 @@ import java.util.Random;
 public abstract class Bot extends Players{
     ArrayList<String> cardsBot = new ArrayList<>();
     public Bot(String name) {
-        super(name);
+        super();
     }
     public int RandomChoice(){
         Random rd= new Random();

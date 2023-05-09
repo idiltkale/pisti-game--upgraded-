@@ -3,15 +3,18 @@ import java.util.Random;
 public class ExpertBot extends Players {
     private String onBoard;
     public static boolean exbool = true;
-    public ExpertBot() {
-        super("Expert Bot");
+    private String name;
+
+    public ExpertBot(String name) {
+        super();
+        this.name=name;
     }
 
     @Override public String getOnBoard() {return onBoard;}
     @Override public void setOnBoard(String onBoard) {this.onBoard = onBoard;}
 
     public void PlayExpertBot() {
-        NoviceBot nb = new NoviceBot();
+        NoviceBot nb;
         Random rd = new Random();
         boolean bool = true;
 

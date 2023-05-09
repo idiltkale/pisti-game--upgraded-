@@ -2,10 +2,12 @@ import java.util.Random;
 
 public class NoviceBot extends Players {
     private String onBoard;
+    private String name;
     int i = 0;
 
-    public NoviceBot() {
-        super("Novice Bot 🤖");
+    public NoviceBot(String name) {
+        super();
+        this.name=name;
     }
 
     @Override
@@ -41,7 +43,6 @@ public class NoviceBot extends Players {
         System.out.println("SEÇTİĞİ KART    " + cardNum);
         play(cardNum);
     }
-
     @Override
     public void WhenWin(String cardNum) {
         super.WhenWin(cardNum);
