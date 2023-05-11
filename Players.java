@@ -6,23 +6,22 @@ public class Players {
     public static ArrayList<String> Board;
     private String onBoard;
     private static boolean bool2 = true;
-
     public String getOnBoard() {return onBoard;}
-    public void setOnBoard(String onBoard) {this.onBoard = onBoard;}public boolean isBool2() {return bool2;}public void setBool2(boolean bool2) {this.bool2 = bool2;}
+    public void setOnBoard(String onBoard) {this.onBoard = onBoard;}
+    public boolean isBool2() {return bool2;}public void setBool2(boolean bool2) {this.bool2 = bool2;}
     public ArrayList<String> list = new ArrayList<>();
-    static {
-        Board = new ArrayList<>();
-    }
+    static {Board = new ArrayList<>();}
     public static ArrayList<String> getBoard() {return Board;}
     public static void setBoard(ArrayList<String> board) {Players.Board = board;}
     public ArrayList<String> getInventory() {return inventory;}
     public void setInventory(ArrayList<String> inventory) {this.inventory = inventory;}
+    public ArrayList<String> getCards() {return cards;}
+    public void setCards(ArrayList<String> cards) {this.cards = cards;}
 
     public void WhenWin(String cardNum) {
         Board.add(cardNum);
         getCards().remove(cardNum);
         int tempBoardSize = Board.size();
-        System.out.println("Cards on the table  " +Board.size());
         for (int j = 0; j < Board.size(); j++) {
             getInventory().add(Board.get(j));
         }
@@ -30,12 +29,9 @@ public class Players {
             Board.remove(0);
         }
     }
-
     public void play(String cardNum) {
-
         int size = Board.size();
         if (size != 0) onBoard = Board.get(size - 1);
-        System.out.println("ONBOARD     " + onBoard);
 
       //  for (int i = Board.size() - 1; i >= 0; i--) {
             if (bool2) {
@@ -50,7 +46,8 @@ public class Players {
         if (cardNum.charAt(2) == 'J') {
             System.out.println("          joker var");
             WhenWin(cardNum);
-            if(ExpertBot.exbool==true) Counter.CountForComp(cardNum);
+            //if(ExpertBot.exbool==true )
+                Counter.CountForComp(cardNum);
         } else if (onBoard != null && cardNum.charAt(2) == onBoard.charAt(2)) {
             if (Board.size() == 1) {
                 System.out.println("PİŞTİ!! ");
@@ -58,7 +55,8 @@ public class Players {
                 Board.remove(0);
                 getCards().remove(cardNum);
             } else WhenWin(cardNum);
-            if(ExpertBot.exbool==true) Counter.CountForComp(cardNum);
+           // if(ExpertBot.exbool==true)
+                Counter.CountForComp(cardNum);
 
         } else {
             if (Board.size() == 0) {
@@ -72,19 +70,13 @@ public class Players {
                 }
             }
             getCards().remove(cardNum);
-            if(ExpertBot.exbool==true) Counter.CountForComp(cardNum);
+           // if(ExpertBot.exbool==true)
+                Counter.CountForComp(cardNum);
         }
     }
-
     public Players() {
         this.cards = new ArrayList<>();
         this.inventory = new ArrayList<>();
     }
 
-    public ArrayList<String> getCards() {
-        return cards;
-    }
-    public void setCards(ArrayList<String> cards) {
-        this.cards = cards;
-    }
 }

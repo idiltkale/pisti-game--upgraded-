@@ -89,4 +89,3 @@ public class Counter {
         System.out.println("K--" + getCounter()[12]);
     }
 }
-

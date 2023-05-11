@@ -1,18 +1,10 @@
 import java.util.ArrayList;
 import java.util.Collections;
-import java.util.Scanner;
 
 public class Cards {
-    Scanner scanner = new Scanner(System.in);
     private static final String[] suits = {"♦️", "♥️", "♠️", "♣️"};
     private static final String[] ranks = {"A", "2", "3", "4", "5", "6", "7", "8", "9", "10", "J", "Q", "K"};
     private static ArrayList<String> deck = new ArrayList<>();
-
-    {
-        System.out.println("How many players will be play🎮");
-    }
-
-    int howmanyplayers = scanner.nextInt();
     private static final int cardnumber = 52;
 
     //public Cards(ArrayList<Integer> deckk,String[] suits, String[]ranks, ArrayList<String> deck, ArrayList<String> mycards, ArrayList<String>cmpcards){
@@ -20,22 +12,10 @@ public class Cards {
         setCards();
     }
 
-    public String[] getSuits() {
-        return suits;
-    }
-
-    public String[] getRanks() {
-        return ranks;
-    }
-
-
-    public void setDeck(ArrayList<String> deck) {
-        this.deck = deck;
-    }
-
-    public static ArrayList<String> getDeck() {
-        return deck;
-    }
+    public String[] getSuits() {return suits;}
+    public String[] getRanks() {return ranks;}
+    public void setDeck(ArrayList<String> deck) {this.deck = deck;}
+    public static ArrayList<String> getDeck() {return deck;}
 
     public void shuffleCards() {
         Collections.shuffle(deck);

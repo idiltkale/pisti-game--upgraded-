@@ -1,9 +1,14 @@
 import java.util.ArrayList;
 
 public class Main {
+    public static boolean isThereHuman=false;
+   public static int howmany =0;
     public static void main(String[] args) {
 
         args = new String[]{"4", "idil.txt","Kadir","H","idil","E","burak","E","Cem","N","true"};
+
+         howmany= Integer.valueOf(args[0]);
+
         ArrayList<Players> players = new ArrayList<>();
         ArrayList<NoviceBot> nbs = new ArrayList<>();
        // ArrayList<RegularBot> rbs = new ArrayList<>();
@@ -14,6 +19,7 @@ public class Main {
             if (args[i].equals("H") && bool==true) {
                mp = new mePlay(args[i-1]);
                players.add(mp);
+               isThereHuman=true;
             }
             else if(args[i].equals("N")){
                 NoviceBot nb = new NoviceBot(args[i-1]);

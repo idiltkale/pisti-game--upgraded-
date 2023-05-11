@@ -6,15 +6,8 @@ public class mePlay extends Players {
     public mePlay(String name) {
         super();
     }
-
-    public boolean isBool2() {
-        return bool2;
-    }
-
-    public void setBool2(boolean bool2) {
-        this.bool2 = bool2;
-    }
-
+    public boolean isBool2() {return bool2;}
+    public void setBool2(boolean bool2) {this.bool2 = bool2;}
 
     public void PlayForMe(int choose) {
         String cardNum = null;
@@ -26,7 +19,6 @@ public class mePlay extends Players {
         }
         play(cardNum);
     }
-
     @Override
     public void WhenWin(String cardNum) {
         super.WhenWin(cardNum);

@@ -9,18 +9,16 @@ public class NoviceBot extends Players {
         super();
         this.name=name;
     }
-
     @Override
     public String getOnBoard() {
         return onBoard;
     }
-
     @Override
     public void setOnBoard(String onBoard) {
         this.onBoard = onBoard;
     }
-
     public void PlayNoviceBot() {
+        System.out.println(name + " (novice) is playing... ");
         Random rd = new Random();
         int size = Board.size();
         if (size != 0) onBoard = Board.get(size - 1);
@@ -40,7 +38,6 @@ public class NoviceBot extends Players {
         } else {
             cardNum = getCards().get(random - 1);
         }
-        System.out.println("SEÇTİĞİ KART    " + cardNum);
         play(cardNum);
     }
     @Override
