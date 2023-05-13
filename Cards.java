@@ -2,12 +2,10 @@ import java.util.ArrayList;
 import java.util.Collections;
 
 public class Cards {
-    private static final String[] suits = {"♦️", "♥️", "♠️", "♣️"};
+    private static final String[] suits = {"C", "H", "D", "S"};
     private static final String[] ranks = {"A", "2", "3", "4", "5", "6", "7", "8", "9", "10", "J", "Q", "K"};
     private static ArrayList<String> deck = new ArrayList<>();
     private static final int cardnumber = 52;
-
-    //public Cards(ArrayList<Integer> deckk,String[] suits, String[]ranks, ArrayList<String> deck, ArrayList<String> mycards, ArrayList<String>cmpcards){
     public Cards() {
         setCards();
     }
@@ -39,12 +37,12 @@ public class Cards {
 
     public void cutCards() {
         int decksize = deck.size();
-        int cutpoint = (int) (Math.random() * decksize); // randomly choose the cut point
+        int cutpoint = (int) (Math.random() * decksize);
         ArrayList<String> temp = new ArrayList<>(decksize);
         for (int i = 0; i < decksize; i++) {
-            temp.add(deck.get((i + cutpoint) % decksize)); // shift the deck by cutpoint and wrap around
+            temp.add(deck.get((i + cutpoint) % decksize));
         }
-        Collections.copy(deck, temp); // update the original deck with the cut cards
+        Collections.copy(deck, temp);
     }
 
     public void Printer() {

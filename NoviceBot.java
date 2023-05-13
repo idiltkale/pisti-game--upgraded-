@@ -2,12 +2,10 @@ import java.util.Random;
 
 public class NoviceBot extends Players {
     private String onBoard;
-    private String name;
     int i = 0;
 
     public NoviceBot(String name) {
-        super();
-        this.name=name;
+        super(name);
     }
     @Override
     public String getOnBoard() {
@@ -18,7 +16,8 @@ public class NoviceBot extends Players {
         this.onBoard = onBoard;
     }
     public void PlayNoviceBot() {
-        System.out.println(name + " (novice) is playing... ");
+        System.out.println( getName()+ " (novice) is playing... ");
+        System.out.println();
         Random rd = new Random();
         int size = Board.size();
         if (size != 0) onBoard = Board.get(size - 1);
@@ -41,8 +40,8 @@ public class NoviceBot extends Players {
         play(cardNum);
     }
     @Override
-    public void WhenWin(String cardNum) {
-        super.WhenWin(cardNum);
+    public void WhenWin(String cardNum,boolean misti) {
+        super.WhenWin(cardNum,misti);
     }
 
     @Override

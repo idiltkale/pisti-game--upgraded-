@@ -37,13 +37,27 @@ public class Dealer {
     public void PrintOurcards() {
         int i = 1;
         for (Players player : players) {
-            System.out.println(i + ". "  +"Player 🎮🎮");
+            System.out.print("♡ " + player.getName() + "'s cards:  ♡   ");
+            System.out.println("score: "+ player.getScore());
             for (int k = 0; k < player.getCards().size(); k++) {
-                System.out.println(k + 1 + ". Cards" + player.getCards().get(k));
+                System.out.print(" "+player.getCards().get(k) + " ");
             }
+            System.out.println();
             System.out.println();
             i++;
         }
+        System.out.println();
+        for (int j = Players.Board.size() - 1; j >= 0; j--) {
+            System.out.println("               " + Players.Board.get(j));
+        }
+    }
+    public void PrintMyCards(mePlay mp){
+        System.out.print("♡ " + mp.getName() + "'s cards:  ♡   ");
+        System.out.println("score: "+ mp.getScore());
+        for (int k = 0; k < mp.getCards().size(); k++) {
+            System.out.print(" "+ mp.getCards().get(k) + " ");
+        }
+        System.out.println();
         System.out.println();
         for (int j = Players.Board.size() - 1; j >= 0; j--) {
             System.out.println("               " + Players.Board.get(j));

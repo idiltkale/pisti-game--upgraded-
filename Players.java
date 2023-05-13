@@ -1,11 +1,30 @@
 import java.util.ArrayList;
 
-public class Players {
+public abstract class Players {
     private ArrayList<String> cards;
     private ArrayList<String> inventory;
+    private ArrayList<String> MistiInventory;
+    private int score;
+    private String name;
     public static ArrayList<String> Board;
     private String onBoard;
     private static boolean bool2 = true;
+    public Points pt = new Points();
+    public boolean misti;
+    public Players(String name) {
+        this.cards = new ArrayList<>();
+        this.inventory = new ArrayList<>();
+        this.MistiInventory=new ArrayList<>();
+        this.name=name;
+    }
+
+    public ArrayList<String> getMistiInventory() {return MistiInventory;}
+    public void setMistiInventory(ArrayList<String> mistiInventory) {MistiInventory = mistiInventory;}
+    public String getName() {return name;}
+    public void setName(String name) {this.name = name;}
+    public int getScore() {return score;}
+    public void setScore(int score) {this.score = score;}
+
     public String getOnBoard() {return onBoard;}
     public void setOnBoard(String onBoard) {this.onBoard = onBoard;}
     public boolean isBool2() {return bool2;}public void setBool2(boolean bool2) {this.bool2 = bool2;}
@@ -15,19 +34,27 @@ public class Players {
     public static void setBoard(ArrayList<String> board) {Players.Board = board;}
     public ArrayList<String> getInventory() {return inventory;}
     public void setInventory(ArrayList<String> inventory) {this.inventory = inventory;}
-    public ArrayList<String> getCards() {return cards;}
+    public  ArrayList<String> getCards() {return cards;}
     public void setCards(ArrayList<String> cards) {this.cards = cards;}
 
-    public void WhenWin(String cardNum) {
+    public void WhenWin(String cardNum, boolean misti) {
         Board.add(cardNum);
         getCards().remove(cardNum);
         int tempBoardSize = Board.size();
-        for (int j = 0; j < Board.size(); j++) {
-            getInventory().add(Board.get(j));
+        if(misti==false){
+            for (int j = 0; j < Board.size(); j++) {
+                getInventory().add(Board.get(j));
+            }
+        }
+        if(misti==true){
+            for (int j = 0; j < Board.size(); j++) {
+                getMistiInventory().add(Board.get(j));
+            }
         }
         for (int j = 0; j < tempBoardSize; j++) {
             Board.remove(0);
         }
+        score = pt.getTotalPointCards(getInventory()) + (pt.getTotalPointCards(getMistiInventory())*5);
     }
     public void play(String cardNum) {
         int size = Board.size();
@@ -43,20 +70,17 @@ public class Players {
          //   break;
         //}
 
-        if (cardNum.charAt(2) == 'J') {
+        if (cardNum.charAt(1) == 'J') {
             System.out.println("          joker var");
-            WhenWin(cardNum);
-            //if(ExpertBot.exbool==true )
+            WhenWin(cardNum,false);
                 Counter.CountForComp(cardNum);
-        } else if (onBoard != null && cardNum.charAt(2) == onBoard.charAt(2)) {
+        } else if (onBoard != null && cardNum.charAt(1) == onBoard.charAt(1)) {
             if (Board.size() == 1) {
                 System.out.println("PİŞTİ!! ");
+                WhenWin(cardNum,true);
                 //  pişti sayacı ekle
-                Board.remove(0);
-                getCards().remove(cardNum);
-            } else WhenWin(cardNum);
-           // if(ExpertBot.exbool==true)
-                Counter.CountForComp(cardNum);
+            } else WhenWin(cardNum,false);
+             Counter.CountForComp(cardNum);
 
         } else {
             if (Board.size() == 0) {
@@ -73,10 +97,6 @@ public class Players {
            // if(ExpertBot.exbool==true)
                 Counter.CountForComp(cardNum);
         }
-    }
-    public Players() {
-        this.cards = new ArrayList<>();
-        this.inventory = new ArrayList<>();
     }
 
 }

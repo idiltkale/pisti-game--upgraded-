@@ -4,15 +4,14 @@ public class mePlay extends Players {
     int i = 0;
 
     public mePlay(String name) {
-        super();
+        super(name);
     }
     public boolean isBool2() {return bool2;}
     public void setBool2(boolean bool2) {this.bool2 = bool2;}
 
     public void PlayForMe(int choose) {
         String cardNum = null;
-        for (int i = 1; i < 5; i++) { //düzenle
-            // System.out.println(getCards().size());
+        for (int i = 1; i < 5; i++) {
             if (choose == i) {
                 cardNum = getCards().get(i - 1);
             }
@@ -20,8 +19,8 @@ public class mePlay extends Players {
         play(cardNum);
     }
     @Override
-    public void WhenWin(String cardNum) {
-        super.WhenWin(cardNum);
+    public void WhenWin(String cardNum,boolean misti) {
+        super.WhenWin(cardNum,misti);
     }
 
     @Override

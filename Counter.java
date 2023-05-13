@@ -1,7 +1,7 @@
 import java.util.ArrayList;
 
 public class Counter {
-    //private ArrayList<Integer> counter = new ArrayList<>();
+
     private static int[] counter = new int[13];
     public static String play = null;
 
@@ -12,9 +12,8 @@ public class Counter {
     public void setCounter(int[] counter) {
         this.counter = counter;
     }
-    //integer arrayi içine al 1 0 olsun 2 1 olsun etc
     public static void CountForComp(String value){
-        char a = value.charAt(2);
+        char a = value.charAt(1);
         for(int i=2;i<10;i++){
             if(a == 'A') {
                 getCounter()[0]++;
@@ -41,7 +40,7 @@ public class Counter {
         int max =0;
         for(int j=0;j<cards.size();j++){
             for(int i=2;i<10;i++){
-                char a = cards.get(j).charAt(2);
+                char a = cards.get(j).charAt(1);
                 if(a=='A' && getCounter()[0]>max){
                     max = getCounter()[0];
                     play =cards.get(j);
@@ -70,7 +69,7 @@ public class Counter {
                 }
             }
         }
-        System.out.println("MAX OLAN KARTTTTT" + play +" Sayısı daaa: " + max);
+       // System.out.println("MAX OLAN KARTTTTT" + play +" Sayısı daaa: " + max);
         return play;
     }
     public static void printcounter(){
