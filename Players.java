@@ -37,7 +37,7 @@ public abstract class Players {
     public  ArrayList<String> getCards() {return cards;}
     public void setCards(ArrayList<String> cards) {this.cards = cards;}
 
-    public void WhenWin(String cardNum, boolean misti) {
+    public void WhenWin(String cardNum, boolean misti,String[] args) {
         Board.add(cardNum);
         getCards().remove(cardNum);
         int tempBoardSize = Board.size();
@@ -54,9 +54,9 @@ public abstract class Players {
         for (int j = 0; j < tempBoardSize; j++) {
             Board.remove(0);
         }
-        score = pt.getTotalPointCards(getInventory()) + (pt.getTotalPointCards(getMistiInventory())*5);
+        score = pt.getTotalPointCards(getInventory(),args) + (pt.getTotalPointCards(getMistiInventory(),args)*5);
     }
-    public void play(String cardNum) {
+    public void play(String cardNum,String[] args) {
         int size = Board.size();
         if (size != 0) onBoard = Board.get(size - 1);
 
@@ -71,15 +71,15 @@ public abstract class Players {
         //}
 
         if (cardNum.charAt(1) == 'J') {
-            System.out.println("          joker var");
-            WhenWin(cardNum,false);
+            System.out.println("     joker  !!!");
+            WhenWin(cardNum,false,args);
                 Counter.CountForComp(cardNum);
         } else if (onBoard != null && cardNum.charAt(1) == onBoard.charAt(1)) {
             if (Board.size() == 1) {
-                System.out.println("PİŞTİ!! ");
-                WhenWin(cardNum,true);
+                System.out.println("  PİŞTİ  !! ");
+                WhenWin(cardNum,true,args);
                 //  pişti sayacı ekle
-            } else WhenWin(cardNum,false);
+            } else WhenWin(cardNum,false,args);
              Counter.CountForComp(cardNum);
 
         } else {

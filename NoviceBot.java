@@ -5,7 +5,7 @@ public class NoviceBot extends Players {
     int i = 0;
 
     public NoviceBot(String name) {
-        super(name);
+        super(name+" Novice Bot");
     }
     @Override
     public String getOnBoard() {
@@ -15,8 +15,8 @@ public class NoviceBot extends Players {
     public void setOnBoard(String onBoard) {
         this.onBoard = onBoard;
     }
-    public void PlayNoviceBot() {
-        System.out.println( getName()+ " (novice) is playing... ");
+    public void PlayNoviceBot(String [] args) {
+        System.out.println( getName()+ " is playing... ");
         System.out.println();
         Random rd = new Random();
         int size = Board.size();
@@ -37,15 +37,15 @@ public class NoviceBot extends Players {
         } else {
             cardNum = getCards().get(random - 1);
         }
-        play(cardNum);
+        play(cardNum,args);
     }
     @Override
-    public void WhenWin(String cardNum,boolean misti) {
-        super.WhenWin(cardNum,misti);
+    public void WhenWin(String cardNum,boolean misti,String [] args) {
+        super.WhenWin(cardNum,misti,args);
     }
 
     @Override
-    public void play(String cardNum) {
-        super.play(cardNum);
+    public void play(String cardNum,String [] args) {
+        super.play(cardNum,args);
     }
 }

@@ -17,7 +17,7 @@ public class Cards {
 
     public void shuffleCards() {
         Collections.shuffle(deck);
-        System.out.println("            🎲 Cards are shuffled 🎲");
+        System.out.println("        🎲 Cards are shuffled 🎲");
     }
 
     public void setCards() {
@@ -43,11 +43,5 @@ public class Cards {
             temp.add(deck.get((i + cutpoint) % decksize));
         }
         Collections.copy(deck, temp);
-    }
-
-    public void Printer() {
-        for (int i = 0; i < deck.size(); i++) {
-            System.out.println(deck.get(i));
-        }
     }
 }

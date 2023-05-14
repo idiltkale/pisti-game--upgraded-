@@ -5,7 +5,7 @@ public class RegularBot extends Players implements Play {
     int i = 0;
 
     public RegularBot(String name) {
-        super(name);
+        super(name + " Regular Bot");
     }
     @Override
     public String getOnBoard() {
@@ -16,10 +16,10 @@ public class RegularBot extends Players implements Play {
         this.onBoard = onBoard;
     }
 
-    public void PlayRegularBot(){
+    public void PlayRegularBot(String [] args){
         Points pt = new Points();
-        int score = pt.getTotalPointCards(Players.Board);
-        System.out.println(getName() + " (regular) is playing... ");
+        int score = pt.getTotalPointCards(Players.Board,args);
+        System.out.println(getName() + " is playing... ");
         System.out.println();
         Random rd = new Random();
         int size = Board.size();
@@ -42,7 +42,7 @@ public class RegularBot extends Players implements Play {
 
                 }
             }
-            play(cardNum);
+            play(cardNum,args);
         }
         else{
             for (int i = 0; i < getCards().size(); i++) {
@@ -53,7 +53,7 @@ public class RegularBot extends Players implements Play {
                 }
            }
             cardNum=getCards().get(random-1);
-            play(cardNum);
+            play(cardNum,args);
         }
 
     }

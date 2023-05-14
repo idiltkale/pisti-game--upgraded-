@@ -9,25 +9,19 @@ public class Game {
         else if(verbose==false) dl.PrintMyCards(mp);
     }
 
-    public void Start(ArrayList<Players> players, ArrayList<ExpertBot> exs,ArrayList<RegularBot> rbs,ArrayList<NoviceBot> nbs,mePlay mp,boolean verbose){
+    public void Start(ArrayList<Players> players, ArrayList<ExpertBot> exs,ArrayList<RegularBot> rbs,ArrayList<NoviceBot> nbs,mePlay mp,boolean verbose,String[] args){
         Scanner sc = new Scanner(System.in);
-
         for(int k=0;k<Main.tours;k++){
             Cards cards = new Cards();
             Points pt = new Points();
             Dealer dl = new Dealer(cards,players);
 
-            cards.Printer();
-            System.out.println("************");
             cards.shuffleCards();
-            cards.Display();
+            System.out.println("♡ ♡ ♡ ♡ ♡ ♡ ♡ ♡ ♡ ♡ ♡ ♡ ♡ ♡ ♡ ♡ ♡ ♡ ♡ ♡ ♡ ♡ ♡ ♡ ♡ ♡ ♡");
             cards.cutCards();
-            //cards.Printer();
-            System.out.println("************");
             int choose = 0;
             dl.dealCards();
             print(dl,verbose,mp);
-            //cards.Printer();
 
             while(true) {
                 for (int a = 0; a < 4; a++) {
@@ -50,26 +44,25 @@ public class Game {
                             sc.nextLine();
                         }
                     }
-                    if(Main.isThereHuman==true) mp.PlayForMe(choose);
+                    if(Main.isThereHuman==true) mp.PlayForMe(choose,args);
                     print(dl,verbose,mp);
-                    Counter.printcounter();
                     for(int i=1;i<4;i++){
                         if(exs.size()>=i) {
-                            exs.get(i-1).PlayExpertBot();
+                            exs.get(i-1).PlayExpertBot(args);
                             print(dl,verbose,mp);
+                            System.out.println("♡ ♡ ♡ ♡ ♡ ♡ ♡ ♡ ♡ ♡ ♡ ♡ ♡ ♡ ♡ ♡ ♡ ♡ ♡ ♡ ♡ ♡ ♡ ♡ ♡ ♡ ♡");
                         }
                         if(nbs.size()>=i){
-                            nbs.get(i-1).PlayNoviceBot();
+                            nbs.get(i-1).PlayNoviceBot(args);
                             print(dl,verbose,mp);
+                            System.out.println("♡ ♡ ♡ ♡ ♡ ♡ ♡ ♡ ♡ ♡ ♡ ♡ ♡ ♡ ♡ ♡ ♡ ♡ ♡ ♡ ♡ ♡ ♡ ♡ ♡ ♡ ♡");
                         }
                         if(rbs.size()>=i) {
-                            int puan = pt.getTotalPointCards(Players.Board);
-                            System.out.println("PUAN     " + puan);
-                            rbs.get(i-1).PlayRegularBot();
+                            rbs.get(i-1).PlayRegularBot(args);
                             print(dl,verbose,mp);
+                            System.out.println("♡ ♡ ♡ ♡ ♡ ♡ ♡ ♡ ♡ ♡ ♡ ♡ ♡ ♡ ♡ ♡ ♡ ♡ ♡ ♡ ♡ ♡ ♡ ♡ ♡ ♡ ♡");
                         }
                     }
-                    Counter.printcounter();
                 }
                 if(Cards.getDeck().size()!=0) {
                     System.out.println("                Cards are dealing🎲...");
@@ -82,5 +75,6 @@ public class Game {
             System.out.println("                 The game is over🔚");
         }
     }
+
     }
 

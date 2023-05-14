@@ -1,7 +1,6 @@
-import java.io.BufferedReader;
-import java.io.FileReader;
-import java.io.IOException;
+import java.io.*;
 import java.util.ArrayList;
+import java.util.List;
 
 public class Points {
     static boolean wildcardControl = false;
@@ -13,48 +12,53 @@ public class Points {
     boolean didGetPoints;
     int getTotalPointCards;
 
-    public int getTotalPointCards(ArrayList<String> list) {
-
-        int i = 0;
-        getTotalPointCards = 0;
-        try (BufferedReader reader = new BufferedReader(new FileReader("points.txt"))) {
+    public int getTotalPointCards(ArrayList<String> list,String[] args) {
+        List<String> fileContents = new ArrayList<>();
+        try (BufferedReader reader = new BufferedReader(new FileReader(args[2]))) {
             String line;
-            while (i < list.size()) {
-                didGetPoints = false;
-                while ((line = reader.readLine()) != null) {
-                    String[] parts = line.split(" ");
-                    if (parts.length == 2) {
-                        String card = parts[0];
-                        int points = Integer.parseInt(parts[1]);
-                        processCard(card, points);
-                    }
-                    String card = parts[0];
-                    if (wildcardControl && wildcardSuit == list.get(i).charAt(0)) {
-                        getTotalPointCards += processCard(list.get(i), wildcardPoints);
-                        didGetPoints = true;
-                        break;
-                    } else if (cardControl && wildcardFace == list.get(i).charAt(1)) {
-                        getTotalPointCards += processCard(list.get(i), cardpoints);
-                        didGetPoints = true;
-                        break;
-                    } else if (!wildcardControl && !cardControl && list.get(i).equals(card)) {
-                        int points = Integer.parseInt(parts[1]);
-                        getTotalPointCards += processCard(list.get(i), points);
-                        didGetPoints = true;
-                        break;
-                    }
-
-
-                }
-                if (didGetPoints == false) {
-                    getTotalPointCards += processCard(list.get(i), 1);
-                }
-                i++;
+            while ((line = reader.readLine()) != null) {
+                 fileContents.add(line);
             }
-
         } catch (IOException e) {
             e.printStackTrace();
         }
+        int i = 0;
+        getTotalPointCards = 0;
+        while (i < list.size()) {
+            didGetPoints = false;
+            for(String line : fileContents){
+                String[] parts = line.split(" ");
+                if (parts.length == 2) {
+                    String card = parts[0];
+                    int points = Integer.parseInt(parts[1]);
+                    processCard(card, points);
+                }
+                String card = parts[0];
+                if (wildcardControl && wildcardSuit == list.get(i).charAt(0)) {
+                    getTotalPointCards += processCard(list.get(i), wildcardPoints);
+                    //System.out.println(wildcardPoints);
+                    didGetPoints = true;
+                    break;
+                } else if (cardControl && wildcardFace == list.get(i).charAt(1)) {
+                    getTotalPointCards += processCard(list.get(i), cardpoints);
+                    didGetPoints = true;
+                    break;
+                } else if (!wildcardControl && !cardControl && list.get(i).equals(card)) {
+                    int points = Integer.parseInt(parts[1]);
+                    getTotalPointCards += processCard(list.get(i), points);
+                    didGetPoints = true;
+                    break;
+                }
+
+            }
+
+            if (didGetPoints == false) {
+                getTotalPointCards += processCard(list.get(i), 1);
+            }
+            i++;
+        }
+
+
         return getTotalPointCards;
     }
 
@@ -99,6 +103,7 @@ public class Points {
                     break;
             }
         }
+
         return cardPoints;
     }
 }

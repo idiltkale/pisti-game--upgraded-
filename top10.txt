@@ -1,0 +1,3 @@
+bird Regular Bot,142
+mouse Novice Bot,59
+dunkey Expert Bot,45

@@ -69,22 +69,6 @@ public class Counter {
                 }
             }
         }
-       // System.out.println("MAX OLAN KARTTTTT" + play +" Sayısı daaa: " + max);
         return play;
-    }
-    public static void printcounter(){
-        System.out.println("A--" + getCounter()[0]);
-        System.out.println("2--" + getCounter()[1]);
-        System.out.println("3--" + getCounter()[2]);
-        System.out.println("4--" + getCounter()[3]);
-        System.out.println("5--" + getCounter()[4]);
-        System.out.println("6--" + getCounter()[5]);
-        System.out.println("7--" + getCounter()[6]);
-        System.out.println("8--" + getCounter()[7]);
-        System.out.println("9--" + getCounter()[8]);
-        System.out.println("10--" + getCounter()[9]);
-        System.out.println("J--" + getCounter()[10]);
-        System.out.println("Q--" + getCounter()[11]);
-        System.out.println("K--" + getCounter()[12]);
     }
 }
